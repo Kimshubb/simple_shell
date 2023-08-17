@@ -103,19 +103,31 @@ typedef struct passinfo
  *struct builtin - contains a builtin string and related function
  *@type: the builtin command flag
  *@func: the function
- */
+
 typedef struct builtin
 {
 	char *type;
 	int (*func)(info_t *);
 } builtin_table;
-
+*/
+builtin_table builtins[] = {
+	{"exit", _myexit},
+	{"cd", _mycd},
+	{"help", _myhelp},
+	{"history", _myhistory},
+	{"alias", _myalias},
+	{"setenv", _mysetenv},
+	{"unsetenv", _myunsetenv},
+	{"env", _myenv},
+	{NULL, NULL}
+}
 
 /* toem_shloop.c */
 int hsh(info_t *, char **);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
+void setup_path(info_t *info);
 
 /* toem_parser.c */
 int is_cmd(info_t *, char *);
@@ -174,7 +186,7 @@ char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* toem_builtin.c */
-int _myexit(info_t *);
+int _myexit(info_t *info);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
@@ -193,10 +205,10 @@ void set_info(info_t *, char **);
 void free_info(info_t *, int);
 
 /* toem_environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
+char *_getenv(info_t *info, const char *name);
+int _myenv(info_t *info);
+int _mysetenv(info_t *info);
+int _myunsetenv(info_t *info);
 int populate_env_list(info_t *);
 
 /* toem_getenv.c */

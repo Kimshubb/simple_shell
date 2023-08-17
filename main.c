@@ -6,6 +6,7 @@
 int main(void)
 {
 	info_t info = INFO_INIT;
+	setup_path(&info);
 
 	while (1)
 	{
@@ -17,6 +18,7 @@ int main(void)
 			break;
 		}
 		int builtin_result = find_builtin(&info);
+
 		if (builtin_result != -1)
 		{
 			if (builtin_result == 1)
