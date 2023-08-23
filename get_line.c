@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * 
+ * _getline - functions that scans the buffer for newline chars to extract lines
  * 
  *
  */
-ssize_t get_input(info_t *info) 
+ssize_t _getline(info_t *info) 
 {
 	static char input_buffer[INPUT_BUF_SIZE];
     	static size_t input_len = 0;
@@ -57,3 +57,27 @@ ssize_t get_input(info_t *info)
     return strlen(line);
 }
 
+/**
+ * get_input - Read user input from stdin and store it in info struct
+ * @info pointer to info_t struct where iput is stored
+ * returns -1 if theres an error or end of input
+ * returns 0 if success
+ */
+ssize_t get_input(info_t *info)
+{
+	ssize_t bytes_read;
+	ssize_t len = 0;
+	char *line = NULL;
+
+	bytes_read = _getline(info, &line, &len);
+
+	if (bytes_read == -1 || bytes_read == 0)
+	{
+
+		if (line)
+			free(line);
+		return -1;
+	}
+	info->arg = line;
+	return 0;
+}

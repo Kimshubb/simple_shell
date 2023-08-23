@@ -123,10 +123,10 @@ builtin_table builtins[] = {
 }
 
 /* toem_shloop.c */
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
+int hsh(info_t *info, char **environ);
+int find_builtin(info_t *info);
 void find_cmd(info_t *);
-void fork_cmd(info_t *);
+void fork_cmd(info_t *info);
 void setup_path(info_t *info);
 
 /* toem_parser.c */
@@ -159,7 +159,8 @@ int _putchar(char);
 char *_strncpy(char *, char *, int);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
-
+char **custom_strtow(char *str, char *delim);
+char *custom_strtok(char *str, const char *delim, char **saveptr);
 /* toem_tokenizer.c */
 char **strtow(char *, char *);
 char **strtow2(char *, char);
@@ -171,6 +172,7 @@ void *_realloc(void *, unsigned int, unsigned int);
 
 /* toem_memory.c */
 int bfree(void **);
+void free_info(info_t, int free_argv);
 
 /* toem_atoi.c */
 int interactive(info_t *);
@@ -187,7 +189,7 @@ void remove_comments(char *);
 
 /* toem_builtin.c */
 int _myexit(info_t *info);
-int _mycd(info_t *);
+int _mycd(info_t *info);
 int _myhelp(info_t *);
 
 /* toem_builtin1.c */
@@ -195,8 +197,8 @@ int _myhistory(info_t *);
 int _myalias(info_t *);
 
 /*toem_getline.c */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+ssize_t get_input(info_t *info);
+ssize_t _getline(info_t *, info);
 void sigintHandler(int);
 
 /* toem_getinfo.c */
