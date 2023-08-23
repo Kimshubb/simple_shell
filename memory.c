@@ -24,3 +24,38 @@ void free_info(info_t *info, int free_argv)
 		info->argv = NULL;
 	}
 }
+/**
+ * clear_info - clears the info struct
+ * @info -struct being cleared
+ * return 1 success
+ * 	  0 if failure
+ */
+void clear_info(info_t *info)
+{
+	if (info->args != NULL)
+	{
+		free(info->args);
+		info->args = NULL;
+	}
+	if (info->argv != NULL)
+	{
+		free_info((void **)info->argv);
+		info->argv = NULL;
+	}
+	info->arg = NULL;
+    	info->path = NULL;
+    	info->argc = 0;
+    	info->line_count = 0;
+    	info->err_num = 0;
+    	info->linecount_flag = 0;
+   	info->fname = NULL;
+ 	info->env = NULL;
+    	info->history = NULL;
+    	info->alias = NULL;
+    	info->env_changed = 0;
+    	info->status = 0;
+    	info->cmd_buf = NULL;
+    	info->cmd_buf_type = CMD_NORM;
+    	info->readfd = 0;
+    	info->histcount = 0;
+}
