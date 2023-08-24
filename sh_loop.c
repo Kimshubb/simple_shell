@@ -84,6 +84,6 @@ void fork_cmd(info_t *info)
 	{
 		/*wait for child process to exit and get its exit status*/
 		waitpid(child_pid, &status, 0);
-		info->status = WEEXITSATUS(status);
+		info->status = WEXITSTATUS(status);
 	}
 }

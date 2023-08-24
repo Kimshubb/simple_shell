@@ -1,5 +1,6 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
+#include <stdef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -136,26 +137,23 @@ int is_cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 
-/* loophsh.c */
-int loophsh(char **);
-
 /* toem_errors.c */
 void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int _eputchar(char c);
 
 /* toem_string.c */
-int _strlen(char *);
-int _strcmp(char *, char *);
+size_t _strlen(const char *str);
+int _strcmp(const char *s1, const char *s2);
 char *starts_with(const char *str const char *prefix);
+char *_strstr(const char *haystack, const char *needle);
+void _puts(char *str);
+int _putchar(char c);
 char *_strcat(char *, char *);
 
 /* toem_string1.c */
-char *_strcpy(char *, char *);
+char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
 void _puts(char *);
-int _putchar(char);
 
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
@@ -175,16 +173,19 @@ void *_realloc(void *, unsigned int, unsigned int);
 /* toem_memory.c */
 int bfree(void **);
 void free_info(info_t, int free_argv);
+void *_memmove(void *dest, const void *src, size_t n);
 
 /* toem_atoi.c */
 int interactive(info_t *);
 int is_delim(char, char *);
 int _isalpha(int);
-int _atoi(char *);
+int _atoi(const char *str);
+void _eputs(char *str);
 
 /* toem_errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
+int _erratoi(const char *str);
+void print_error(const char *program_name, const char *message);
+int _snprintf(char *str, size_t size, const char *format, ...);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);

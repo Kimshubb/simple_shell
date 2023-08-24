@@ -11,7 +11,7 @@ int _mycd(info_t *info)
     	char *target_dir = info->argc > 1 ? info->argv[1] : _getenv(info, "HOME");
 	char current_dir[PATH_MAX];
 	/*handle cd - to switch to previous directory*/
- 	if (strcmp(target_dir, "-") == 0)
+ 	if (_strcmp(target_dir, "-") == 0)
     	{
         	char *prev_dir = _getenv(info, "OLDPWD");
         	if (prev_dir == NULL)

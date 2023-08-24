@@ -24,14 +24,15 @@ int _myenv(info_t *info)
  */
 int find_builtin(info_t *info)
 {
-	unsigned int  = 0;
+	unsigned int i = 0;
+	int result;
 
 	while (builtins[i].type != NULL)
 	{
 		if (_strcmp(info->argv[0], builtins[i].type) == 0)
 		{
 			/*call builtin function and pass the info struct*/
-			int result = builtins[i].func(info);
+			result = builtins[i].func(info);
 			return result;
 		}
 		i++;

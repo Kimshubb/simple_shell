@@ -18,7 +18,7 @@ void setup_path(info_t *info)
 			/*use the first directory in PATH as the default*/
 			info->path = path_dirs[0];
 			/*free the dynamically allocated path directories*/
-			ffree(path_dirs)
+			free(path_dirs)
 		}
 	}
 }

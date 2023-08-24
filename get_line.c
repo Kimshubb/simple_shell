@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
  * _getline - functions that scans the buffer for newline chars to extract lines
- * 
+ * @info - struct containing the commands 
  *
  */
 ssize_t _getline(info_t *info) 
@@ -44,7 +44,7 @@ ssize_t _getline(info_t *info)
         /* Move remaining data to the beginning of the buffer*/
         	if (input_pos == input_len) 
 		{
-            		memmove(input_buffer, &input_buffer[input_pos - bytes_read], bytes_read);
+            		_memmove(input_buffer, &input_buffer[input_pos - bytes_read], bytes_read);
             		input_pos = bytes_read;
             		input_len = bytes_read;
         	}
@@ -54,7 +54,7 @@ ssize_t _getline(info_t *info)
     /*Update the arg field in the info structure*/
     info->arg = line;
 
-    return strlen(line);
+    return _strlen(line);
 }
 
 /**

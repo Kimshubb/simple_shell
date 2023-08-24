@@ -10,7 +10,7 @@ list_t *node_starts_with(list_t *list, char *prefix, char delim)
 {
 	while (list)
 	{
-		if (starts_with(list->str, prefix) && list->str[strlen(prefix] == delim))
+		if (starts_with(list->str, prefix) && list->str[_strlen(prefix] == delim))
 			return list;
 		list = list->next;
 	}
@@ -31,7 +31,7 @@ list_t *add_node(list_t **head, const char *str, int num)
 	if (new_node == NULL)
 		return NULL;
 
-	new_node->str = strdup(str);
+	new_node->str = _strdup(str);
 	if (new_node->str == NULL)
 	{
 		free(new_node);

@@ -26,7 +26,7 @@ char *custom_strtok(char *str, const char *delim, char **saveptr)
     	if (str)
         	*str++ = '\0';
     	else
-        	*saveptr = token + strlen(token);
+        	*saveptr = token + _strlen(token);
     	return token;
 }
 

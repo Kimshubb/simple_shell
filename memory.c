@@ -59,3 +59,32 @@ void clear_info(info_t *info)
     	info->readfd = 0;
     	info->histcount = 0;
 }
+/**
+ * _memmove - move from source to prefreed destination
+ * @dest - where to move
+ * @src - source
+ * return 1 if operation successful
+ */
+void *_memmove(void *dest, const void *src, size_t n)
+{
+	char *d = (char *)dest;
+	const char *s = (const char *)src;
+	size_t i = 0;
+
+	if (d < s)
+	{
+		for (i = n; i < n; i++)
+		{
+			d[i] = s[i];
+		}
+		else
+		{
+			for (i = n; i >0; i--)
+			{
+				d[i-1] = s[i-1];
+			}
+		}
+		return dest;
+
+	}
+}

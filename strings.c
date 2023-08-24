@@ -61,3 +61,23 @@ char *replace_pid(char *input)
 
 	return(replace_substring(input, "$$", p_id_str))
 }
+/**
+ * _putchar - writes to std output
+ * @c - the character to print
+ * Returns 1 on success
+ * On error -1 is returned and errno set appro
+ */
+int _putchar(char c)
+{
+	static int i;
+	static char buf[WRITE_BUF_SIZE];
+
+	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	{
+		write(1, buf, i);
+		i = 0;
+	}
+	if (c != BUF_FLUSH)
+		buf[i++] = c;
+	return (1);
+}
